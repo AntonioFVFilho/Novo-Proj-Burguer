@@ -1,0 +1,81 @@
+Iniciando Projeto
+
+- Na Pasta do Projeto - Inicia Aplicação 
+npm init -y
+
+- Cria os  arquivo ( app.js, routes.js, server.js )
+
+- Instala Express
+yarn add express
+
+- Rodar Servidor 
+node src/server.js
+
+- Instala Nodemon
+yarn add nodemon _D
+
+Altera o main para Caminho server.js e coloca no Scripts "dev": "nodemon"
+
+- Rodar Servidor e Atualizar 
+yarn dev
+
+- Instala Sucrase
+yarn add Sucrase -D 
+- Testa Sucrase
+yarn sucrase-node src/server.js  
+
+Para Usar Sucrase e Atualizar Servidor Rodando, cria um arquivo nodemon.json com scrip nele :
+{
+    "execMap":{
+    "js": "node -r sucrase/register"
+    }
+}
+
+- Trocar const por import e export :
+exemplo : import express from 'express'
+exemplo : export default routes
+
+
+- Instalar Docker e configurar
+
+no Terminal criar contener :
+
+docker run --name devburger-postgre -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres
+
+- Instalar o Sequelize :
+yarn add sequelize pg pg-hstore
+
+- Instalar o Sequelize-cli :
+yarn add -D sequelize-cli
+
+- Criar um aquivo chamado .sequelizerc na raiz do Projeto
+
+- Criação do arquivo database
+module.exports = {
+    dialect: 'postgres',
+    host: 'localhost',
+    port: 5432,
+    username: 'postgres',
+    password: 'postgres',
+    database: 'deveburger',
+    
+    define: {
+        timestamps: true,
+        undercored: true,
+        undercoredAll: true,
+    },
+};
+
+- Criando MIGRATION :
+
+yarn sequelize migration:create --name create-user-table
+
+- Rodar migration :
+
+ yarn sequelize db:migrate
+
+- Desfazer ultima migration
+
+yarn sequelize db:migrate:undo
+
+
